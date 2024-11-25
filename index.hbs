@@ -7,17 +7,18 @@
         {{> "featured-posts"}}
     {{/if}}
 
-    {{#get "tags" limit="all"}}
+  
+    {{#get "tags" include="count.posts" limit="all" order="slug asc" as |topic|}}
     <div class="topic-feed">
 
-        {{#foreach tags}}
+        {{#foreach topic}}
             <section class="topic">
                 <header class="topic-header">
                     <h2 class="topic-name">
                         <a href="{{url}}">{{name}}</a>
                     </h2>
                 </header>
-                {{#get "posts" order="published_at asc" filter="tag:{{slug}}" limit="5" as |featured|}}
+                {{#get "posts" order="published_at desc" filter="tag:{{slug}}+visibility:public" limit="5" as |featured|}}
                     <ul class="topic-article-feed">
                         {{#foreach featured}}
                         <li class="topic-article">
