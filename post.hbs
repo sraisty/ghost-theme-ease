@@ -16,7 +16,12 @@
         </header>
 
         <div class="gh-content gh-canvas">
-            {{content}}
+            {{#if access}}
+                {{content}}
+            {{else}}
+                <p style="text-align:center;font-style:italic;">This post is private.</p>
+            {{/if}}
+           
         </div>
 
         <div class="pagination-container gh-canvas">
